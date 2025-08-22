@@ -49,17 +49,16 @@ public class InfiltrationPlanListener implements JobExecutionListener {
 
     @Override
     public void afterJob(JobExecution jobExecution) {
-        
         String infiltrationResult = (String) jobExecution.getExecutionContext().get("infiltrationResult");
-        Map<String, Object> infiltrationPlan = (Map<String, Object>) jobExecution.getExecutionContext().get("infiltrationPlan");
+        Map<String, Object> infiltrationPlan = (Map<String, Object>)
+                jobExecution.getExecutionContext().get("infiltrationPlan");
 
-        log.info("타겟'{}' 침투결과:{}", infiltrationPlan.get("targetSystem"), infiltrationResult);
+       log.info("타겟 '{}' 침투 결과: {}", infiltrationPlan.get("targetSystem"), infiltrationResult);
 
-        if("TERMINATED".equals(infiltrationResult)) {
-            log.info("시스템 제거 완료. 다음 타겟 검색 중 ...");
+        if ("TERMINATED".equals(infiltrationResult)) {
+            log.info("시스템 제거 완료. 다음 타겟 검색 중...");
         } else {
             log.info("철수한다. 다음 기회를 노리자.");
         }
-
     }
 }
